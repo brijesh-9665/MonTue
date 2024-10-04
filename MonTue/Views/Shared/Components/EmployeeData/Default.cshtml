@@ -1,0 +1,129 @@
+﻿@model List<MonTue.Models.Employee>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="table-responsive mt-4">
+    <table id="employeeTable" class="table table-bordered table-hover table-striped shadow-lg">
+        <thead class="thead-gradient text-white">
+            <tr>
+                <th scope="col">Employee ID</th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr class="vibrant-row" data-id="@employee.eid" data-name="@employee.ename" data-salary="@employee.salary">
+                    <td>@employee.eid</td>
+                    <td>@employee.ename</td>
+                    <td>@string.Format("{0:C}", employee.salary)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    /* Vibrant gradient header */
+    .thead-gradient {
+        background: linear-gradient(90deg, #ff6f61, #ff9966, #ffcc99);
+    }
+
+    /* General table styling */
+    #employeeTable {
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #fff5e6;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #employeeTable td {
+        vertical-align: middle;
+        padding: 15px;
+        color: #333;
+        text-align: center;
+    }
+
+    #employeeTable th {
+        padding: 15px;
+        color: white;
+        text-align: center;
+    }
+
+    /* Column Hover Highlight */
+    #employeeTable td:hover {
+        background-color: #ffcc99;
+        color: #fff;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    /* Highlight entire column on hover */
+    #employeeTable td:hover::before {
+        content: '';
+        background-color: #ff9966;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+    }
+
+    /* Row hover effect */
+    .vibrant-row:hover {
+        background-color: #ffe6e6 !important;
+        color: #ff6f61;
+        font-weight: bold;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    /* Row click selection */
+    .vibrant-row.selected {
+        background-color: #ff9966;
+        color: #fff;
+    }
+
+    /* Box shadow and rounded corners */
+    .table-responsive {
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Responsive font size */
+</style>
+
+<script>
+    $(document).ready(function() {
+        // Row selection feature
+        $('#employeeTable tbody tr').click(function() {
+            $(this).toggleClass('selected').siblings().removeClass('selected');
+        });
+
+        // Column highlight effect
+        $('#employeeTable td').hover(function() {
+            var colIndex = $(this).index();
+            $('#employeeTable tr').each(function() {
+                $(this).find('td').eq(colIndex).addClass('highlight-col');
+            });
+        }, function() {
+            var colIndex = $(this).index();
+            $('#employeeTable tr').each(function() {
+                $(this).find('td').eq(colIndex).removeClass('highlight-col');
+            });
+        });
+    });
+</script>
+
+
+@* <div class="row" id="employeeListDiv">
+    @foreach (var employee in Model)
+    {
+        <div class="col-md-6 bg-black mb-3" >
+            <!-- Use col-md-6 for a 2-column layout on medium and larger screens -->
+            <p class="text-white">ID: @employee.eid</p>
+            <p class="text-white">Name: @employee.ename</p>
+            <p class="text-white">Salary: @employee.salary</p>
+        </div>
+    }
+</div> *@

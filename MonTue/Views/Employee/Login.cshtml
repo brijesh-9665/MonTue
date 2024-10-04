@@ -1,0 +1,116 @@
+﻿<!-- Add Bootstrap CSS in the <head> section -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+    /* Body styling */
+    body {
+        background-color: #ffe0b2; /* Light orange background for the entire page */
+        
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 100vh; /* Full viewport height */
+        margin: 0; /* Remove default margin */
+        font-family: Arial, sans-serif; /* Change font for better aesthetics */
+    }
+
+    /* Card styling */
+    .card {
+        width: 100%;
+        margin: auto;
+        max-width: 450px; /* Increase the width of the card */
+        padding: 30px; /* Add padding inside the card */
+        border-radius: 20px; /* Rounded corners for a softer look */
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+        background-color: #ffffff; /* White background for the card */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effect */
+    }
+
+    /* Card hover effect */
+    .card:hover {
+        transform: translateY(-5px); /* Lift effect on hover */
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow effect */
+    }
+
+    /* Heading styling */
+    h2 {
+        margin-bottom: 20px; /* Space below the heading */
+        color: #d57a29; /* Darker orange color for the heading */
+        text-align: center; /* Center the heading */
+        font-weight: bold; /* Bold font for the heading */
+    }
+
+    /* Form control styling */
+    .form-control {
+        border-radius: 20px; /* Cylindrical corners for input fields */
+        transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for focus */
+        padding: 10px 15px; /* Padding inside the input fields */
+        font-size: 16px; /* Larger font size for better readability */
+        background-color: #fff; /* White background for input fields */
+        border: 2px solid #ccc; /* Default border color */
+    }
+
+    /* Input focus state */
+    .form-control:focus {
+        border-color: #ff9800; /* Vibrant border on focus */
+        box-shadow: 0 0 5px rgba(255, 152, 0, 0.5); /* Shadow effect on focus */
+    }
+
+    /* Tooltip styling */
+    .tooltip-inner {
+        background-color: #ff9800; /* Tooltip background color */
+        color: white; /* Tooltip text color */
+        border-radius: 5px; /* Rounded corners */
+    }
+
+    /* Button styling */
+    .btn-primary {
+        width: 100%; /* Make the button full-width */
+        padding: 10px;
+        border-radius: 20px; /* Cylindrical corners for buttons */
+        font-size: 16px;
+        background-color: #ff9800; /* Vibrant orange background color */
+        border: none; /* Remove default border */
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    }
+
+    /* Button hover state */
+    .btn-primary:hover {
+        background-color: #e68a00; /* Darker shade on hover */
+        transform: translateY(-2px); /* Lift effect on hover */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow effect */
+    }
+
+    /* Responsive styling */
+    @@media (max-width: 576px) {
+        .card {
+            margin-top: 20px; /* Reduce top margin on smaller screens */
+        }
+    }
+</style>
+
+<div class="card">
+    <form action="/Employee/Login" method="post">
+        <h2 class="text-center">Login</h2>
+        <div class="form-group"> 
+            <label for="username" class="form-label">Enter Username:</label>
+            <input type="text" name="username" id="username" class="form-control" placeholder="Username" required 
+                data-toggle="tooltip" title="Please fill out this form" />
+        </div>
+        <div class="form-group mt-3">
+            <label for="password" class="form-label">Enter Password:</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required 
+                data-toggle="tooltip" title="Please fill out this form" />
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Login</button>
+    </form>
+</div>
+
+<!-- jQuery and Bootstrap JS for tooltip functionality -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Enable Bootstrap tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

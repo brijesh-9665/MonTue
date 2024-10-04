@@ -1,0 +1,44 @@
+﻿@Html.Partial("_MenuBar")
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="mt-5" id="EmployeeListContainer">
+    @await Component.InvokeAsync("EmployeeData")
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#EmployeeListContainer').on('click', 'tr.vibrant-row', function () {
+
+            var employeeId = $(this).data("id");
+
+            $.ajax({
+
+                url: '/Employee/DeleteEmployee',
+                type : 'GET',
+                data : {id : employeeId},
+
+                success: function (response) {
+
+                    $.ajax({
+                        url: '/Employee/GetEmployee',
+                        type: 'GET',
+                        success: function (data) {
+
+                             $("#EmployeeListContainer").html(data);
+                            //console.log(data)
+                        }
+                    });
+                  
+                },
+                error : function(){
+                    alert('error occured');
+                }
+
+            })
+
+        })
+    });
+</script>

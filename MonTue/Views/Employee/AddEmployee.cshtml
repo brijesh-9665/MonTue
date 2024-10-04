@@ -1,0 +1,134 @@
+﻿@model MonTue.Models.Employee
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@Html.Partial("_MenuBar")
+<div class="container mt-5">
+    <div id="result"></div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-gradient-primary text-white">
+            <h4 class="mb-0">Add New Employee</h4>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("AddEmployee", "Employee", FormMethod.Post, new { id = "employeeForm" }))
+            {
+                <div class="form-group vibrant-input">
+                    <label>@Html.LabelFor(e => e.eid)</label>
+                    @Html.TextBoxFor(e => e.eid, new { @class = "form-control form-control-lg", placeholder = "Enter Employee ID" })
+                    @Html.ValidationMessageFor(e => e.eid, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group vibrant-input">
+                    <label>@Html.LabelFor(e => e.ename)</label>
+                    @Html.TextBoxFor(e => e.ename, new { @class = "form-control form-control-lg", placeholder = "Enter Employee Name" })
+                    @Html.ValidationMessageFor(e => e.ename, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group vibrant-input">
+                    <label>@Html.LabelFor(e => e.salary)</label>
+                    @Html.TextBoxFor(e => e.salary, new { @class = "form-control form-control-lg", placeholder = "Enter Salary" })
+                    @Html.ValidationMessageFor(e => e.salary, null, new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" class="btn btn-gradient-primary btn-lg btn-block">Submit</button>
+            }
+        </div>
+    </div>
+
+    <div class="mt-5" id="EmployeeListContainer">
+        @await Component.InvokeAsync("EmployeeData")
+    </div>
+</div>
+
+<script src="~/js/ajaxcall.js"></script>
+
+<style>
+    /* Vibrant gradient for form header */
+    .bg-gradient-primary {
+        background: linear-gradient(90deg, #ff6f61, #ff9966, #ffcc99);
+    }
+
+    /* Apply vibrant styling to input fields */
+    .vibrant-input input {
+        border: 2px solid transparent;
+        border-radius: 8px;
+        background-color: #fff5e6;
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+        /* Input hover effect with vibrant border */
+        .vibrant-input input:focus {
+            border-color: #ff9966;
+            box-shadow: 0 0 5px rgba(255, 153, 102, 0.6);
+        }
+
+    /* Gradient for the submit button */
+    .btn-gradient-primary {
+        background: linear-gradient(90deg, #ff6f61, #ff9966, #ffcc99);
+        color: #fff;
+        border: none;
+    }
+
+        /* Button hover effect */
+        .btn-gradient-primary:hover {
+            background: linear-gradient(90deg, #ff9966, #ffcc99, #ffe6cc);
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+    /* Form input and button sizing */
+    .form-control-lg {
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+
+    .btn-lg {
+        font-size: 1.2rem;
+    }
+
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Subtle hover for form fields */
+    .form-group:hover {
+        transform: scale(1.02);
+        transition: transform 0.2s ease-in-out;
+    }
+     .success-message {
+        background: linear-gradient(90deg, #4CAF50, #66BB6A, #81C784); /* vibrant green gradient */
+        color: white;
+        font-family: 'Arial', sans-serif;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Fade-in effect for the message */
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Fade-out effect for smooth disappearance */
+    @@keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+</style>

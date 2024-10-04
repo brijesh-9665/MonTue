@@ -1,0 +1,48 @@
+﻿
+    <style>
+        /* Navigation bar styling */
+        .navbar {
+            overflow: hidden;
+            background-color: orange; /* Change background to orange */
+            position: fixed; /* Fix navbar at top */
+            top: 0;
+            width: 100%; /* Full width */
+            padding: 10px 0; /* Padding for better height */
+        }
+
+            /* Navbar links */
+            .navbar a {
+                float: left;
+                display: block;
+                color: white; /* Change text color to white */
+                text-align: center;
+                padding: 14px 30px; /* Increase padding for bigger clickable area */
+                text-decoration: none;
+                font-size: 18px; /* Increase font size */
+                transition: background-color 0.3s ease, transform 0.3s ease; /* Animation for smooth hover */
+            }
+
+                /* Hover effect */
+                .navbar a:hover {
+                    background-color: #ffb347; /* Lighter orange on hover */
+                    color: black; /* Change text color on hover */
+                    transform: scale(1.1); /* Slight scaling effect */
+                }
+
+        /* Adding some space for the content */
+        .content {
+            padding-top: 70px; /* Adjust padding to account for navbar height */
+        }
+    </style>
+
+
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <a href="/Employee/Index">Home</a>
+        <a href="/Employee/AddEmployee">Add Employee</a>
+        <a href="/Employee/UpdateEmployee">Update Employee</a>
+        <a href="/Employee/DeleteEmployee">Delete Employee</a> 
+        <a href="/Employee/Login">Logout</a>
+
+    </div>
+
